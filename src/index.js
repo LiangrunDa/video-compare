@@ -1,6 +1,7 @@
 import { initializeComparisonSlider } from './slider';
-import { SLIDER_CONTAINER_CLASS, SLIDER_CLIPPER_CLASS } from './consts';
+import { SLIDER_CONTAINER_CLASS, WIPER_CONTAINER_CLASS } from './consts';
 import './styles.css';
+import { initializeComparisonWiper } from './wiper';
 
 function initVideoCompare() {
   const initialize = () => {
@@ -10,6 +11,14 @@ function initVideoCompare() {
       const container = containers[i];       
       if (container) {
         initializeComparisonSlider(container);
+      }
+    }
+
+    const wiperContainers = document.getElementsByClassName(WIPER_CONTAINER_CLASS);
+    for (let i = 0; i < wiperContainers.length; i++) {
+      const container = wiperContainers[i];       
+      if (container) {
+        initializeComparisonWiper(container);
       }
     }
   };

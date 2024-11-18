@@ -9,7 +9,6 @@ export function initializeComparisonSlider(container) {
     video.style.left = '0';
     
     const clipper = document.createElement('div');
-    clipper.className = 'video-clipper';
     clipper.style.width = '50%';
     clipper.style.position = 'absolute';
     clipper.style.top = '0';
