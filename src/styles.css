@@ -1,0 +1,16 @@
+.vc-slider-container {
+    display: inline-block;
+    line-height: 0;
+    position: relative;
+    width: 100%;
+    padding-top: 42.3%;
+}
+
+.vc-slider-container > video {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    max-width: none;
+}

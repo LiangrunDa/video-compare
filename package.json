@@ -1,0 +1,30 @@
+{
+    "name": "video-compare",
+    "version": "0.0.1",
+    "description": "A simple library for video comparison",
+    "main": "dist/video-compare.js",
+    "unpkg": "dist/video-compare.min.js",
+    "module": "dist/video-compare.esm.js",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "rollup -c",
+        "dev": "rollup -c -w"
+    },
+    "keywords": [
+        "video",
+        "comparison",
+        "slider"
+    ],
+    "author": "Liangrun Da",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.23.0",
+        "@babel/preset-env": "^7.22.20",
+        "@rollup/plugin-babel": "^6.0.4",
+        "@rollup/plugin-terser": "^0.4.4",
+        "rollup": "^2.79.1",
+        "rollup-plugin-styles": "^4.0.0"
+    }
+}
