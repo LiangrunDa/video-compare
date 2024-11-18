@@ -30,3 +30,21 @@
     left: 0;
     height: 100%;
 }
+
+.vc-wiper-container > div {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.vc-wiper-container > div > video  {
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    max-width: none;
+    left: 0;
+}
