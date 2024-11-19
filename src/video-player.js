@@ -55,7 +55,11 @@ export class BaseVideoPlayer {
         }
     }
 
-    addVideoWithWrapper(video, wrapper) {
+    addVideoWithWrapper(video) {
+        const wrapper = document.createElement('div');
+        video.parentNode.insertBefore(wrapper, video);
+        wrapper.appendChild(video);
+
         this.addVideo(video);
         this.wrappers.push(wrapper);
         wrapper.classList.add('video-wrapper');

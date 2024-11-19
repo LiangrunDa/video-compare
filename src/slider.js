@@ -4,20 +4,11 @@ export class ComparisonSlider extends BaseVideoPlayer {
     constructor(container) {
         super(container);
         
-        // Create wrappers for videos
-        const wrapper1 = document.createElement('div');
-        const wrapper2 = document.createElement('div');
         const video1 = container.getElementsByTagName('video')[1];
         const video2 = container.getElementsByTagName('video')[0];
-        
-        // Wrap videos
-        video1.parentNode.insertBefore(wrapper1, video1);
-        wrapper1.appendChild(video1);
-        video2.parentNode.insertBefore(wrapper2, video2);
-        wrapper2.appendChild(video2);
-        
-        this.addVideoWithWrapper(video1, wrapper1);
-        this.addVideoWithWrapper(video2, wrapper2);
+
+        this.addVideoWithWrapper(video1);
+        this.addVideoWithWrapper(video2);
         
         this.setupSlider();
         this.syncVideos(0);
