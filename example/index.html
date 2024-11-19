@@ -52,6 +52,40 @@
         .demo-container {
             margin: 20px 0;
         }
+        
+        /* Add new tab styles */
+        .tabs {
+            max-width: 700px;
+            margin: 20px auto;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .tab-button.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -64,144 +98,105 @@
         <pre><code class="html">&lt;script src="https://cdn.jsdelivr.net/npm/video-compare@0.0.4/dist/video-compare.min.js"&gt;&lt;/script&gt;</code></pre>
     </div>
     
-    <div class="demo-section">
-        <h2>1. Slider Comparison</h2>
-        <p>Move your mouse or touch the screen to slide the white divider line.</p>
-        <pre><code class="html">
+    <div class="tabs">
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="slider">Slider</button>
+            <button class="tab-button" data-tab="wiper">Wiper</button>
+            <button class="tab-button" data-tab="side">Side by Side</button>
+        </div>
+
+        <div class="tab-content active" data-tab="slider">
+            <h2>1. Slider Comparison</h2>
+            <p>Move your mouse or touch the screen to slide the white divider line.</p>
+            <pre><code class="html">
 &lt;div class="vc-slider-container"&gt;
     &lt;video playsinline autoplay muted loop vc-caption="Baseline"&gt;
-        &lt;source src="./videos/video1.mp4"&gt;
+        &lt;source src="./videos/video1.webm"&gt;
     &lt;/video&gt;
     &lt;video playsinline autoplay muted loop vc-caption="Ours"&gt;
-        &lt;source src="./videos/video2.mp4"&gt;
+        &lt;source src="./videos/video2.webm"&gt;
     &lt;/video&gt;
 &lt;/div&gt;</code></pre>
-        <div class="demo-container">
-            <div class="vc-slider-container">
-                <video playsinline autoplay muted loop vc-caption="Baseline">
-                    <source src="./videos/video1.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Ours">
-                    <source src="./videos/video2.mp4">
-                </video>
+            <div class="demo-container">
+                <div class="vc-slider-container">
+                    <video playsinline autoplay muted loop vc-caption="Baseline">
+                        <source src="./videos/video1.webm">
+                    </video>
+                    <video playsinline autoplay muted loop vc-caption="Ours">
+                        <source src="./videos/video2.webm">
+                    </video>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>2. Wiper Comparison</h2>
-        <p>Wait for 1 second, and a wipe transition will reveal the second video, then repeat.</p>
-        <pre><code class="html">
+        <div class="tab-content" data-tab="wiper">
+            <h2>2. Wiper Comparison</h2>
+            <p>Wait for 1 second, and a wipe transition will reveal the second video, then repeat.</p>
+            <pre><code class="html">
 &lt;div class="vc-wiper-container"&gt;
     &lt;video playsinline autoplay muted loop vc-caption="Baseline"&gt;
-        &lt;source src="./videos/video1.mp4"&gt;
+        &lt;source src="./videos/video1.webm"&gt;
     &lt;/video&gt;
     &lt;video playsinline autoplay muted loop vc-caption="Ours"&gt;
-        &lt;source src="./videos/video2.mp4"&gt;
+        &lt;source src="./videos/video2.webm"&gt;
     &lt;/video&gt;
 &lt;/div&gt;</code></pre>
-        <div class="demo-container">
-            <div class="vc-wiper-container">
-                <video playsinline autoplay muted loop vc-caption="Baseline">
-                    <source src="./videos/video1.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Ours">
-                    <source src="./videos/video2.mp4">
-                </video>
+            <div class="demo-container">
+                <div class="vc-wiper-container">
+                    <video playsinline autoplay muted loop vc-caption="Baseline">
+                        <source src="./videos/video1.webm">
+                    </video>
+                    <video playsinline autoplay muted loop vc-caption="Ours">
+                        <source src="./videos/video2.webm">
+                    </video>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>3. Four Grid Comparison</h2>
-        <pre><code class="html">
-&lt;div class="vc-four-grid-container"&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Baseline"&gt;
-        &lt;source src="./videos/video1.mp4"&gt;
-    &lt;/video&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Ours"&gt;
-        &lt;source src="./videos/video2.mp4"&gt;
-    &lt;/video&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Baseline"&gt;
-        &lt;source src="./videos/video3.mp4"&gt;
-    &lt;/video&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Ours"&gt;
-        &lt;source src="./videos/video4.mp4"&gt;
-    &lt;/video&gt;
-&lt;/div&gt;</code></pre>
-        <div class="demo-container">
-            <div class="vc-four-grid-container">
-                <video playsinline autoplay muted loop vc-caption="Baseline">
-                    <source src="./videos/video1.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Ours">
-                    <source src="./videos/video2.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Baseline">
-                    <source src="./videos/video3.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Ours">
-                    <source src="./videos/video4.mp4">
-                </video>
-            </div>
-        </div>
-    </div>
 
-    <div class="demo-section">
-        <h2>4. Side by Side Comparison</h2>
-        <pre><code class="html">
+        <div class="tab-content" data-tab="side">
+            <h2>3. Side by Side Comparison</h2>
+            <pre><code class="html">
 &lt;div class="vc-side-by-side-container"&gt;
     &lt;video playsinline autoplay muted loop vc-caption="Baseline"&gt;
-        &lt;source src="./videos/video1.mp4"&gt;
+        &lt;source src="./videos/video1.webm"&gt;
     &lt;/video&gt;
     &lt;video playsinline autoplay muted loop vc-caption="Ours"&gt;
-        &lt;source src="./videos/video2.mp4"&gt;
+        &lt;source src="./videos/video2.webm"&gt;
     &lt;/video&gt;
 &lt;/div&gt;</code></pre>
-        <div class="demo-container">
-            <div class="vc-side-by-side-container">
-                <video playsinline autoplay muted loop vc-caption="Baseline">
-                    <source src="./videos/video1.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Ours">
-                    <source src="./videos/video2.mp4">
-                </video>
+            <div class="demo-container">
+                <div class="vc-side-by-side-container">
+                    <video playsinline autoplay muted loop vc-caption="Baseline">
+                        <source src="./videos/video1.webm">
+                    </video>
+                    <video playsinline autoplay muted loop vc-caption="Ours">
+                        <source src="./videos/video2.webm">
+                    </video>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="demo-section">
-        <h2>5. Three Video Comparison</h2>
-        <pre><code class="html">
-&lt;div class="vc-three-video-comparison-container"&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Baseline"&gt;
-        &lt;source src="./videos/video1.mp4"&gt;
-    &lt;/video&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Ours"&gt;
-        &lt;source src="./videos/video2.mp4"&gt;
-    &lt;/video&gt;
-    &lt;video playsinline autoplay muted loop vc-caption="Input"&gt;
-        &lt;source src="./videos/video3.mp4"&gt;
-    &lt;/video&gt;
-&lt;/div&gt;</code></pre>
-        <div class="demo-container">
-            <div class="vc-three-video-comparison-container">
-                <video playsinline autoplay muted loop vc-caption="Baseline">
-                    <source src="./videos/video1.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Ours">
-                    <source src="./videos/video2.mp4">
-                </video>
-                <video playsinline autoplay muted loop vc-caption="Input">
-                    <source src="./videos/video1.mp4">
-                </video>
-            </div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             hljs.highlightAll();
+            
+            // Add tab functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.dataset.tab;
+                    
+                    // Update active states
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    button.classList.add('active');
+                    document.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
+                });
+            });
         });
     </script>
 </body>
