@@ -4,8 +4,8 @@ export class ComparisonWiper extends BaseVideoPlayer {
     constructor(container) {
         super(container);
         
-        const video1 = container.getElementsByTagName('video')[0];
-        const video2 = container.getElementsByTagName('video')[1];
+        const video1 = container.getElementsByTagName('video')[1];
+        const video2 = container.getElementsByTagName('video')[0];
         const wrapper1 = document.createElement('div');
         const wrapper2 = document.createElement('div');
 
@@ -14,8 +14,8 @@ export class ComparisonWiper extends BaseVideoPlayer {
         video2.parentNode.insertBefore(wrapper2, video2);
         wrapper2.appendChild(video2);
         
-        this.addVideo(video1, wrapper1);
-        this.addVideo(video2, wrapper2);
+        this.addVideoWithWrapper(video1, wrapper1);
+        this.addVideoWithWrapper(video2, wrapper2);
         
         this.setupWiper();
         this.syncVideos(0);

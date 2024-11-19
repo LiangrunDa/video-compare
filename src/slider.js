@@ -7,8 +7,8 @@ export class ComparisonSlider extends BaseVideoPlayer {
         // Create wrappers for videos
         const wrapper1 = document.createElement('div');
         const wrapper2 = document.createElement('div');
-        const video1 = container.getElementsByTagName('video')[0];
-        const video2 = container.getElementsByTagName('video')[1];
+        const video1 = container.getElementsByTagName('video')[1];
+        const video2 = container.getElementsByTagName('video')[0];
         
         // Wrap videos
         video1.parentNode.insertBefore(wrapper1, video1);
@@ -16,8 +16,8 @@ export class ComparisonSlider extends BaseVideoPlayer {
         video2.parentNode.insertBefore(wrapper2, video2);
         wrapper2.appendChild(video2);
         
-        this.addVideo(video1, wrapper1);
-        this.addVideo(video2, wrapper2);
+        this.addVideoWithWrapper(video1, wrapper1);
+        this.addVideoWithWrapper(video2, wrapper2);
         
         this.setupSlider();
         this.syncVideos(0);
@@ -68,5 +68,30 @@ export class ComparisonSlider extends BaseVideoPlayer {
         this.container.addEventListener('mousemove', trackLocation, false);
         this.container.addEventListener('touchstart', trackLocation, false);
         this.container.addEventListener('touchmove', trackLocation, false);
+    }
+}
+
+export class ThreeVideoComparison extends ComparisonSlider {
+    constructor(container) {
+        super(container);
+        
+        // Get the third video
+        const video3 = container.getElementsByTagName('video')[2];
+        this.addVideo(video3);
+        // this.addCaption(video3);
+        // this.captions[2].style.bottom = null;
+        // this.captions[2].style.top = '10px';
+
+        // Add the third video to the second wrapper
+        this.wrappers[0].appendChild(video3);
+        video3.style.width = '20%';
+        video3.style.height = '20%';
+        video3.style.position = 'absolute';
+        video3.style.top = '0';
+        video3.style.right = '0';
+        video3.style.zIndex = '4';
+
+        // Sync the third video with others
+        this.syncVideos(0);
     }
 }

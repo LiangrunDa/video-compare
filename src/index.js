@@ -1,7 +1,7 @@
-import { SLIDER_CONTAINER_CLASS, WIPER_CONTAINER_CLASS, SIDE_BY_SIDE_CONTAINER_CLASS } from './consts';
+import { SLIDER_CONTAINER_CLASS, WIPER_CONTAINER_CLASS, SIDE_BY_SIDE_CONTAINER_CLASS, THREE_VIDEO_COMPARISON_CONTAINER_CLASS } from './consts';
 import './styles.css';
 import { ComparisonWiper } from './wiper';
-import { ComparisonSlider } from './slider';
+import { ComparisonSlider, ThreeVideoComparison } from './slider';
 import { SideBySide } from './side-by-side';
 
 function initVideoCompare() {
@@ -34,6 +34,16 @@ function initVideoCompare() {
             const container = sideBySideContainers[i];
             if (container) {
                 new SideBySide(container);
+            }
+        }
+
+        const threeVideoComparisonContainers = document.getElementsByClassName(
+            THREE_VIDEO_COMPARISON_CONTAINER_CLASS,
+        );
+        for (let i = 0; i < threeVideoComparisonContainers.length; i++) {
+            const container = threeVideoComparisonContainers[i];
+            if (container) {
+                new ThreeVideoComparison(container);
             }
         }
     };

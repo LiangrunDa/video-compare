@@ -22,8 +22,8 @@ export class SideBySide extends BaseVideoPlayer {
         this.initialize(video1, video2, wrapper1, wrapper2);
     }
 
-    addVideo(video, wrapper) {
-        super.addVideo(video, wrapper);
+    addVideoWithWrapper(video, wrapper) {
+        super.addVideoWithWrapper(video, wrapper);
         wrapper.style.width = '50%';
         wrapper.style.height = 'auto';
         wrapper.style.maxWidth = '50%';
@@ -34,8 +34,8 @@ export class SideBySide extends BaseVideoPlayer {
     }
 
     initialize(leftVideo, rightVideo, leftWrapper, rightWrapper) {
-        this.addVideo(leftVideo, leftWrapper);
-        this.addVideo(rightVideo, rightWrapper);
+        this.addVideoWithWrapper(leftVideo, leftWrapper);
+        this.addVideoWithWrapper(rightVideo, rightWrapper);
         this.syncVideos(0);
 
         leftVideo.addEventListener('loadedmetadata', () => {

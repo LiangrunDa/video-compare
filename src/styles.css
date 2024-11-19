@@ -57,3 +57,20 @@
     max-width: none;
     left: 0;
 }
+
+.vc-three-video-comparison-container {
+    display: inline-block;
+    line-height: 0;
+    position: relative;
+    width: 100%;
+    padding-top: 42.3%;
+}
+
+.vc-three-video-comparison-container > .video-wrapper {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    max-width: none;
+}

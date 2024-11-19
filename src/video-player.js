@@ -7,11 +7,20 @@ export class BaseVideoPlayer {
         this.captions = [];
     }
 
-    addVideo(video, wrapper) {
+    addVideo(video) {
         const index = this.videos.length;
         this.videos.push(video);
-        this.wrappers.push(wrapper);
         this.readyStates.push(false);
+        video.addEventListener('loadstart', () => this.resetReadyStates());
+        video.addEventListener('canplaythrough', () => {
+            this.readyStates[index] = true;
+            this.checkAndPlay();
+        });
+    }
+
+    addVideoWithWrapper(video, wrapper) {
+        this.addVideo(video);
+        this.wrappers.push(wrapper);
         wrapper.classList.add('video-wrapper');
         video.style.width = '100%';
         video.style.height = '100%';
@@ -36,13 +45,22 @@ export class BaseVideoPlayer {
             captionDiv.style.maxWidth = '80%';
             wrapper.appendChild(captionDiv);
             this.captions.push(captionDiv);
-        }
 
-        video.addEventListener('loadstart', () => this.resetReadyStates());
-        video.addEventListener('canplaythrough', () => {
-            this.readyStates[index] = true;
-            this.checkAndPlay();
-        });
+            // Watch for changes to vc-caption attribute
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === 'attributes' && mutation.attributeName === 'vc-caption') {
+                        const newCaption = video.getAttribute('vc-caption');
+                        captionDiv.textContent = newCaption;
+                    }
+                });
+            });
+
+            observer.observe(video, {
+                attributes: true,
+                attributeFilter: ['vc-caption']
+            });
+        }
     }
 
     resetReadyStates() {
