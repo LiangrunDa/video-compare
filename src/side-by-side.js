@@ -3,9 +3,6 @@ import { BaseVideoPlayer } from './video-player.js';
 export class SideBySide extends BaseVideoPlayer {
     constructor(container) {
         super(container);
-        this.container.style.display = 'flex';
-        this.container.style.justifyContent = 'center';
-        this.container.style.gap = '0px';
         
         // Create wrappers
         const wrapper1 = document.createElement('div');
@@ -24,13 +21,6 @@ export class SideBySide extends BaseVideoPlayer {
 
     addVideoWithWrapper(video, wrapper) {
         super.addVideoWithWrapper(video, wrapper);
-        wrapper.style.width = '50%';
-        wrapper.style.height = 'auto';
-        wrapper.style.maxWidth = '50%';
-        wrapper.style.position = 'relative';
-        video.style.width = '100%';
-        video.style.height = '100%';
-        video.style.objectFit = 'contain';
     }
 
     initialize(leftVideo, rightVideo, leftWrapper, rightWrapper) {

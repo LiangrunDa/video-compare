@@ -3,13 +3,6 @@ import { BaseVideoPlayer } from './video-player.js';
 export class FourGrid extends BaseVideoPlayer {
     constructor(container) {
         super(container);
-        this.container.style.display = 'grid';
-        this.container.style.gridTemplateColumns = '1fr 1fr';
-        this.container.style.gridTemplateRows = '1fr 1fr';
-        this.container.style.gap = '0';
-        this.container.style.overflow = 'hidden';
-        this.container.style.width = '100%';
-        this.container.style.height = '100%';
         
         // Create wrappers
         const wrapper1 = document.createElement('div');
@@ -39,15 +32,6 @@ export class FourGrid extends BaseVideoPlayer {
 
     addVideoWithWrapper(video, wrapper) {
         super.addVideoWithWrapper(video, wrapper);
-        wrapper.style.width = '100%';
-        wrapper.style.height = '100%';
-        wrapper.style.position = 'relative';
-        wrapper.style.display = 'flex';
-        wrapper.style.alignItems = 'center';
-        wrapper.style.justifyContent = 'center';
-        video.style.width = '100%';
-        video.style.height = '100%';
-        video.style.objectFit = 'contain';
     }
 
     initialize(video1, video2, video3, video4, wrapper1, wrapper2, wrapper3, wrapper4) {

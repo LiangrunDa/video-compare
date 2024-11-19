@@ -25,21 +25,8 @@ export class ComparisonSlider extends BaseVideoPlayer {
 
     setupSlider() {
         const wrapper2 = this.wrappers[1];
-        
-        wrapper2.style.width = '200%';
-        wrapper2.style.position = 'absolute';
-        wrapper2.style.height = '100%';
-        wrapper2.style.maxWidth = 'none';
-        wrapper2.style.left = '0';
-
         const clipper = document.createElement('div');
-        clipper.style.width = '50%';
-        clipper.style.position = 'absolute';
-        clipper.style.top = '0';
-        clipper.style.bottom = '0';
-        clipper.style.overflow = 'hidden';
-        clipper.style.zIndex = '3';
-        clipper.style.boxShadow = '0 0 0 2px white';
+        clipper.classList.add('vc-slider-clipper');
 
         wrapper2.parentNode.insertBefore(clipper, wrapper2);
         clipper.appendChild(wrapper2);
