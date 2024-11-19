@@ -26,17 +26,21 @@ export class ComparisonWiper extends BaseVideoPlayer {
 
         this.video2Clipped = true;
         this.animationTriggered = false;
-        // clipper.style.backgroundColor = 'red';
+        // clipperOuter.style.backgroundColor = 'red';
         // video1.style.display = 'none';
+
+        const aspectRatio = video1.videoWidth / video1.videoHeight;
+        this.container.style.aspectRatio = `${aspectRatio} / 1`;
 
         // Monitor video1 progress to trigger animation
         video1.addEventListener('timeupdate', () => {
             if (!this.animationTriggered && video2.currentTime > video2.duration * 0.5) {
-                console.log('timeupdate', video2.currentTime, video2.duration);
+                requestAnimationFrame(() => {
+                    clipperOuter.style.backgroundColor = 'white';
+                });
+                clipperOuter.getBoundingClientRect();
                 this.startAnimation(clipperOuter);
-                console.log('startAnimation', clipperOuter);
                 this.startAnimation(clipper);
-                console.log('startAnimation', clipper);
                 this.animationTriggered = true;
             }
         });
@@ -58,6 +62,9 @@ export class ComparisonWiper extends BaseVideoPlayer {
                     clipper.appendChild(tempVideo);
                 }
                 this.video2Clipped = !this.video2Clipped;
+                requestAnimationFrame(() => {
+                    clipperOuter.style.backgroundColor = null;
+                });
             }
         });
 
@@ -93,7 +100,6 @@ export class ComparisonWiper extends BaseVideoPlayer {
             clipper.style.clipPath = clipPath;
 
             if (progress < 1) {
-                console.log('animate', progress);
                 requestAnimationFrame(animate);
             }
         };
