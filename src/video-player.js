@@ -91,6 +91,7 @@ export class BaseVideoPlayer {
             this.videos.forEach((video, index) => {
                 if (index !== sourceIndex && Math.abs(video.currentTime - sourceVideo.currentTime) > 0.05) {
                     video.currentTime = sourceVideo.currentTime;
+                    sourceVideo.currentTime = video.currentTime;
                 }
             });
         });
