@@ -7,7 +7,7 @@ A simple javascript video comparison library for both slider and wiper.
 Load the library from CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/video-compare@0.0.4/dist/video-compare.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/video-compare@0.0.5/dist/video-compare.min.js"></script>
 ```
 
 Use the following HTML structure to initialize the video comparison slider:
@@ -23,66 +23,7 @@ Use the following HTML structure to initialize the video comparison slider:
 </div>
 ```
 
-Use the following HTML structure to initialize the video comparison wiper:
-
-```html
-<div class="vc-wiper-container" >
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video1.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video2.mp4">
-    </video>
-</div>
-```
-
-Use the following HTML structure to initialize the video comparison four grid:
-
-```html
-<div class="vc-four-grid-container" >
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video1.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video2.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video3.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video4.mp4">
-    </video>
-</div>
-```
-
-Use the following HTML structure to initialize the video comparison side by side:
-
-```html
-<div class="vc-side-by-side-container" >
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video1.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video2.mp4">
-    </video>
-</div>
-```
-
-Use the following HTML structure to initialize the video comparison three video comparison:
-
-```html
-<div class="vc-three-video-comparison-container" >
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video1.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video2.mp4">
-    </video>
-    <video playsinline autoplay muted loop>
-    <source src="./static/videos/video3.mp4">
-    </video>
-</div>
-```
+For more example, please check the [demo page](https://liangrunda.github.io/video-compare/) and [source code](https://github.com/liangrunda/video-compare/tree/main/example).
 
 ## Features
 
