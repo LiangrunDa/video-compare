@@ -39,9 +39,20 @@
     bottom: 0;
     overflow: hidden;
     z-index: 3;
+    background-color: white;
 }
 
-.vc-wiper-container > div > video  {
+.vc-wiper-container > div > div {
+    width: 99%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.vc-wiper-container > div > div > video  {
     width: 100%;
     position: absolute;
     height: 100%;

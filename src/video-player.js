@@ -18,7 +18,6 @@ export class BaseVideoPlayer {
     }
 
     resetReadyStates() {
-        console.log('resetReadyStates');
         this.readyStates.fill(false);
         this.videos.forEach(video => video.pause());
         this.videos.forEach(video => video.currentTime = 0);

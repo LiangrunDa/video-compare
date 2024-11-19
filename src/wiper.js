@@ -18,18 +18,25 @@ export class ComparisonWiper extends BaseVideoPlayer {
     setupWiper() {
         const video1 = this.videos[0];
         const video2 = this.videos[1];
+        const clipperOuter = document.createElement('div');        
         const clipper = document.createElement('div');
-
-        video2.parentNode.insertBefore(clipper, video2);
+        clipperOuter.appendChild(clipper);
+        video2.parentNode.insertBefore(clipperOuter, video2);
         clipper.appendChild(video2);
 
         this.video2Clipped = true;
         this.animationTriggered = false;
+        // clipper.style.backgroundColor = 'red';
+        // video1.style.display = 'none';
 
         // Monitor video1 progress to trigger animation
         video1.addEventListener('timeupdate', () => {
             if (!this.animationTriggered && video2.currentTime > video2.duration * 0.5) {
+                console.log('timeupdate', video2.currentTime, video2.duration);
+                this.startAnimation(clipperOuter);
+                console.log('startAnimation', clipperOuter);
                 this.startAnimation(clipper);
+                console.log('startAnimation', clipper);
                 this.animationTriggered = true;
             }
         });
@@ -39,6 +46,7 @@ export class ComparisonWiper extends BaseVideoPlayer {
             if (video1.currentTime < video1.duration * 0.5) {
                 this.animationTriggered = false;
                 clipper.style.clipPath = null;
+                clipperOuter.style.clipPath = null;
 
                 if (this.video2Clipped) {
                     const tempVideo = video1;
@@ -54,11 +62,10 @@ export class ComparisonWiper extends BaseVideoPlayer {
         });
 
         video1.addEventListener('loadstart', () => {
-            console.log('loadstart', this.video2Clipped);
             this.animationTriggered = false;
             clipper.style.clipPath = null;
+            clipperOuter.style.clipPath = null;
             if (video2.parentNode === this.videoContainer) {
-                console.log('video2.parentNode === this.videoContainer');
                 const tempVideo = video2;
                 video2.parentNode.insertBefore(video1, video2);
                 clipper.appendChild(tempVideo);
@@ -86,6 +93,7 @@ export class ComparisonWiper extends BaseVideoPlayer {
             clipper.style.clipPath = clipPath;
 
             if (progress < 1) {
+                console.log('animate', progress);
                 requestAnimationFrame(animate);
             }
         };
