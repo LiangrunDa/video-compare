@@ -18,6 +18,12 @@ export default {
       plugins: [terser()]
     },
     {
+      file: 'example/js/video-compare.min.js',
+      format: 'iife',
+      name: 'VideoCompare',
+      plugins: [terser()]
+    },
+    {
       file: 'dist/video-compare.esm.js',
       format: 'es'
     }

@@ -7,7 +7,7 @@ A simple javascript video comparison library for both slider and wiper.
 Load the library from CDN:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/video-compare@0.0.3/dist/video-compare.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/video-compare@0.0.4/dist/video-compare.min.js"></script>
 ```
 
 Use the following HTML structure to initialize the video comparison slider:
