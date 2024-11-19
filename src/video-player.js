@@ -11,6 +11,8 @@ export class BaseVideoPlayer {
         const index = this.videos.length;
         this.videos.push(video);
         this.readyStates.push(false);
+        video.pause();
+        video.currentTime = 0;
         video.addEventListener('loadstart', () => this.resetReadyStates());
         video.addEventListener('canplaythrough', () => {
             this.readyStates[index] = true;
