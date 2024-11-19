@@ -19,7 +19,6 @@ export class ComparisonWiper extends BaseVideoPlayer {
         
         this.setupWiper();
         this.syncVideos(0);
-        this.videoContainer = container;
     }
 
     setupWiper() {
@@ -37,12 +36,11 @@ export class ComparisonWiper extends BaseVideoPlayer {
 
         this.video2Clipped = true;
         this.animationTriggered = false;
-        // clipperOuter.style.backgroundColor = 'red';
-        // video1.style.display = 'none';
 
-        const aspectRatio = video1.videoWidth / video1.videoHeight;
-        this.container.style.aspectRatio = `${aspectRatio} / 1`;
-
+        video1.addEventListener('loadedmetadata', () => {
+            this.container.style.aspectRatio = `${video1.videoWidth / video1.videoHeight} / 1`;
+        });
+        
         // Monitor video1 progress to trigger animation
         video1.addEventListener('timeupdate', () => {
             if (!this.animationTriggered && video2.currentTime > video2.duration * 0.5) {

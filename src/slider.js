@@ -44,6 +44,16 @@ export class ComparisonSlider extends BaseVideoPlayer {
         wrapper2.parentNode.insertBefore(clipper, wrapper2);
         clipper.appendChild(wrapper2);
 
+        if (this.captions.length > 1) {
+            this.captions[1].style.right = null;
+            this.captions[1].style.left = '10px';
+        }
+
+        const video = this.videos[0];
+        video.addEventListener('loadedmetadata', () => {
+            this.container.style.aspectRatio = `${video.videoWidth / video.videoHeight} / 1`;
+        });
+
         const trackLocation = (e) => {
             const pageX = e.touches ? e.touches[0].pageX : e.pageX;
             const rect = this.container.getBoundingClientRect();

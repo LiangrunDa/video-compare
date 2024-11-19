@@ -20,7 +20,6 @@
     line-height: 0;
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* default */
 }
 
 .vc-wiper-container > .video-wrapper {

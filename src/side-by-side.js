@@ -27,6 +27,7 @@ export class SideBySide extends BaseVideoPlayer {
         wrapper.style.width = '50%';
         wrapper.style.height = 'auto';
         wrapper.style.maxWidth = '50%';
+        wrapper.style.position = 'relative';
         video.style.width = '100%';
         video.style.height = '100%';
         video.style.objectFit = 'contain';
@@ -36,5 +37,9 @@ export class SideBySide extends BaseVideoPlayer {
         this.addVideo(leftVideo, leftWrapper);
         this.addVideo(rightVideo, rightWrapper);
         this.syncVideos(0);
+
+        leftVideo.addEventListener('loadedmetadata', () => {
+            this.container.style.aspectRatio = `${leftVideo.videoWidth * 2 / leftVideo.videoHeight} / 1`;
+        });
     }
 }
