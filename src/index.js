@@ -1,7 +1,7 @@
-import { initializeComparisonSlider } from './slider';
 import { SLIDER_CONTAINER_CLASS, WIPER_CONTAINER_CLASS } from './consts';
 import './styles.css';
-import { initializeComparisonWiper } from './wiper';
+import { ComparisonWiper } from './wiper';
+import { ComparisonSlider } from './slider';
 
 function initVideoCompare() {
     const initialize = () => {
@@ -12,7 +12,7 @@ function initVideoCompare() {
         for (let i = 0; i < containers.length; i++) {
             const container = containers[i];
             if (container) {
-                initializeComparisonSlider(container);
+                new ComparisonSlider(container);
             }
         }
 
@@ -22,7 +22,7 @@ function initVideoCompare() {
         for (let i = 0; i < wiperContainers.length; i++) {
             const container = wiperContainers[i];
             if (container) {
-                initializeComparisonWiper(container);
+                new ComparisonWiper(container);
             }
         }
     };

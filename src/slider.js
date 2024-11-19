@@ -1,79 +1,53 @@
-export function initializeComparisonSlider(container) {
-    const video = container.getElementsByTagName('video')[1];
-    const video1 = container.getElementsByTagName('video')[0];
+import { BaseVideoPlayer } from './video-player';
 
-    let video1Ready = false;
-    let video2Ready = false;
-
-    function resetReadyStates() {
-        video1Ready = false;
-        video2Ready = false;
-        video1.pause();
-        video.pause();
+export class ComparisonSlider extends BaseVideoPlayer {
+    constructor(container) {
+        super(container);
+        
+        const video1 = container.getElementsByTagName('video')[0];
+        const video2 = container.getElementsByTagName('video')[1];
+        
+        this.addVideo(video1);
+        this.addVideo(video2);
+        
+        this.setupSlider();
+        this.syncVideos(0);
     }
 
-    video1.addEventListener('loadstart', resetReadyStates);
-    video.addEventListener('loadstart', resetReadyStates);
+    setupSlider() {
+        const video2 = this.videos[1];
+        
+        video2.style.width = '200%';
+        video2.style.position = 'absolute';
+        video2.style.height = '100%';
+        video2.style.maxWidth = 'none';
+        video2.style.left = '0';
 
-    function checkAndPlay() {
-        if (video1Ready && video2Ready) {
-            video1.play();
-            video.play();
-        }
+        const clipper = document.createElement('div');
+        clipper.style.width = '50%';
+        clipper.style.position = 'absolute';
+        clipper.style.top = '0';
+        clipper.style.bottom = '0';
+        clipper.style.overflow = 'hidden';
+        clipper.style.zIndex = '3';
+        clipper.style.boxShadow = '0 0 0 2px white';
+
+        video2.parentNode.insertBefore(clipper, video2);
+        clipper.appendChild(video2);
+
+        const trackLocation = (e) => {
+            const pageX = e.touches ? e.touches[0].pageX : e.pageX;
+            const rect = this.container.getBoundingClientRect();
+            const position = ((pageX - rect.left) / this.container.offsetWidth) * 100;
+
+            if (position <= 100) {
+                clipper.style.width = position + '%';
+                video2.style.width = (100 / position) * 100 + '%';
+            }
+        };
+
+        this.container.addEventListener('mousemove', trackLocation, false);
+        this.container.addEventListener('touchstart', trackLocation, false);
+        this.container.addEventListener('touchmove', trackLocation, false);
     }
-
-    video1.addEventListener('loadeddata', () => {
-        video1Ready = true;
-        checkAndPlay();
-    });
-
-    video.addEventListener('loadeddata', () => {
-        video2Ready = true;
-        checkAndPlay();
-    });
-
-    video1.pause();
-    video.pause();
-
-    video.style.width = '200%';
-    video.style.position = 'absolute';
-    video.style.height = '100%';
-    video.style.maxWidth = 'none';
-    video.style.left = '0';
-
-    const clipper = document.createElement('div');
-    clipper.style.width = '50%';
-    clipper.style.position = 'absolute';
-    clipper.style.top = '0';
-    clipper.style.bottom = '0';
-    clipper.style.overflow = 'hidden';
-    clipper.style.zIndex = '3';
-    clipper.style.boxShadow = '0 0 0 2px white';
-
-    video.parentNode.insertBefore(clipper, video);
-    clipper.appendChild(video);
-    console.log(clipper);
-
-    const clippedVideo = clipper.getElementsByTagName('video')[0];
-
-    video1.addEventListener('timeupdate', () => {
-        if (Math.abs(video1.currentTime - clippedVideo.currentTime) > 0.05) {
-            clippedVideo.currentTime = video1.currentTime;
-        }
-    });
-
-    function trackLocation(e) {
-        const pageX = e.touches ? e.touches[0].pageX : e.pageX;
-        const rect = container.getBoundingClientRect();
-        const position = ((pageX - rect.left) / container.offsetWidth) * 100;
-
-        if (position <= 100) {
-            clipper.style.width = position + '%';
-            clippedVideo.style.width = (100 / position) * 100 + '%';
-        }
-    }
-
-    container.addEventListener('mousemove', trackLocation, false);
-    container.addEventListener('touchstart', trackLocation, false);
-    container.addEventListener('touchmove', trackLocation, false);
 }
