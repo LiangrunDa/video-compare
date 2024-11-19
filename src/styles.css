@@ -6,7 +6,7 @@
     padding-top: 42.3%;
 }
 
-.vc-slider-container > video {
+.vc-slider-container > .video-wrapper {
     width: 100%;
     position: absolute;
     top: 0;
@@ -23,7 +23,7 @@
     aspect-ratio: 16 / 9; /* default */
 }
 
-.vc-wiper-container > video {
+.vc-wiper-container > .video-wrapper {
     width: 99%;
     position: absolute;
     top: 0;
@@ -31,7 +31,7 @@
     height: 99%;
 }
 
-.vc-wiper-container > div {
+.vc-wiper-container > .vc-wiper-clipper-outer  {
     width: 100%;
     position: absolute;
     top: 0;
@@ -41,7 +41,7 @@
     z-index: 3;
 }
 
-.vc-wiper-container > div > div {
+.vc-wiper-container > .vc-wiper-clipper-outer > .vc-wiper-clipper {
     width: 99%; /* leave some space for border */
     position: absolute;
     top: 0;
@@ -51,7 +51,7 @@
     z-index: 3;
 }
 
-.vc-wiper-container > div > div > video  {
+.vc-wiper-container > .vc-wiper-clipper-outer > .vc-wiper-clipper > .video-wrapper > video  {
     width: 100%;
     position: absolute;
     height: 100%;

@@ -4,24 +4,33 @@ export class ComparisonSlider extends BaseVideoPlayer {
     constructor(container) {
         super(container);
         
+        // Create wrappers for videos
+        const wrapper1 = document.createElement('div');
+        const wrapper2 = document.createElement('div');
         const video1 = container.getElementsByTagName('video')[0];
         const video2 = container.getElementsByTagName('video')[1];
         
-        this.addVideo(video1);
-        this.addVideo(video2);
+        // Wrap videos
+        video1.parentNode.insertBefore(wrapper1, video1);
+        wrapper1.appendChild(video1);
+        video2.parentNode.insertBefore(wrapper2, video2);
+        wrapper2.appendChild(video2);
+        
+        this.addVideo(video1, wrapper1);
+        this.addVideo(video2, wrapper2);
         
         this.setupSlider();
         this.syncVideos(0);
     }
 
     setupSlider() {
-        const video2 = this.videos[1];
+        const wrapper2 = this.wrappers[1];
         
-        video2.style.width = '200%';
-        video2.style.position = 'absolute';
-        video2.style.height = '100%';
-        video2.style.maxWidth = 'none';
-        video2.style.left = '0';
+        wrapper2.style.width = '200%';
+        wrapper2.style.position = 'absolute';
+        wrapper2.style.height = '100%';
+        wrapper2.style.maxWidth = 'none';
+        wrapper2.style.left = '0';
 
         const clipper = document.createElement('div');
         clipper.style.width = '50%';
@@ -32,8 +41,8 @@ export class ComparisonSlider extends BaseVideoPlayer {
         clipper.style.zIndex = '3';
         clipper.style.boxShadow = '0 0 0 2px white';
 
-        video2.parentNode.insertBefore(clipper, video2);
-        clipper.appendChild(video2);
+        wrapper2.parentNode.insertBefore(clipper, wrapper2);
+        clipper.appendChild(wrapper2);
 
         const trackLocation = (e) => {
             const pageX = e.touches ? e.touches[0].pageX : e.pageX;
@@ -42,7 +51,7 @@ export class ComparisonSlider extends BaseVideoPlayer {
 
             if (position <= 100) {
                 clipper.style.width = position + '%';
-                video2.style.width = (100 / position) * 100 + '%';
+                wrapper2.style.width = (100 / position) * 100 + '%';
             }
         };
 

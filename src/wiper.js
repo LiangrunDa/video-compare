@@ -6,9 +6,16 @@ export class ComparisonWiper extends BaseVideoPlayer {
         
         const video1 = container.getElementsByTagName('video')[0];
         const video2 = container.getElementsByTagName('video')[1];
+        const wrapper1 = document.createElement('div');
+        const wrapper2 = document.createElement('div');
+
+        video1.parentNode.insertBefore(wrapper1, video1);
+        wrapper1.appendChild(video1);
+        video2.parentNode.insertBefore(wrapper2, video2);
+        wrapper2.appendChild(video2);
         
-        this.addVideo(video1);
-        this.addVideo(video2);
+        this.addVideo(video1, wrapper1);
+        this.addVideo(video2, wrapper2);
         
         this.setupWiper();
         this.syncVideos(0);
@@ -18,11 +25,15 @@ export class ComparisonWiper extends BaseVideoPlayer {
     setupWiper() {
         const video1 = this.videos[0];
         const video2 = this.videos[1];
-        const clipperOuter = document.createElement('div');        
+        const wrapper1 = this.wrappers[0];
+        const wrapper2 = this.wrappers[1];
+        const clipperOuter = document.createElement('div');
+        clipperOuter.classList.add('vc-wiper-clipper-outer');
         const clipper = document.createElement('div');
+        clipper.classList.add('vc-wiper-clipper');
         clipperOuter.appendChild(clipper);
-        video2.parentNode.insertBefore(clipperOuter, video2);
-        clipper.appendChild(video2);
+        wrapper2.parentNode.insertBefore(clipperOuter, wrapper2);
+        clipper.appendChild(wrapper2);
 
         this.video2Clipped = true;
         this.animationTriggered = false;
@@ -35,6 +46,7 @@ export class ComparisonWiper extends BaseVideoPlayer {
         // Monitor video1 progress to trigger animation
         video1.addEventListener('timeupdate', () => {
             if (!this.animationTriggered && video2.currentTime > video2.duration * 0.5) {
+                console.log('triggering animation');
                 requestAnimationFrame(() => {
                     clipperOuter.style.backgroundColor = 'white';
                 });
@@ -53,12 +65,12 @@ export class ComparisonWiper extends BaseVideoPlayer {
                 clipperOuter.style.clipPath = null;
 
                 if (this.video2Clipped) {
-                    const tempVideo = video1;
-                    video1.parentNode.insertBefore(video2, video1);
+                    const tempVideo = wrapper1;
+                    wrapper1.parentNode.insertBefore(wrapper2, wrapper1);
                     clipper.appendChild(tempVideo);
                 } else {
-                    const tempVideo = video2;
-                    video2.parentNode.insertBefore(video1, video2);
+                    const tempVideo = wrapper2;
+                    wrapper2.parentNode.insertBefore(wrapper1, wrapper2);
                     clipper.appendChild(tempVideo);
                 }
                 this.video2Clipped = !this.video2Clipped;
@@ -73,8 +85,8 @@ export class ComparisonWiper extends BaseVideoPlayer {
             clipper.style.clipPath = null;
             clipperOuter.style.clipPath = null;
             if (video2.parentNode === this.videoContainer) {
-                const tempVideo = video2;
-                video2.parentNode.insertBefore(video1, video2);
+                const tempVideo = wrapper2;
+                wrapper2.parentNode.insertBefore(wrapper1, wrapper2);
                 clipper.appendChild(tempVideo);
                 this.video2Clipped = true;
                 this.animationTriggered = false;

@@ -2,13 +2,21 @@ export class BaseVideoPlayer {
     constructor(container) {
         this.container = container;
         this.videos = [];
+        this.wrappers = [];
         this.readyStates = [];
     }
 
-    addVideo(video) {
+    addVideo(video, wrapper) {
         const index = this.videos.length;
         this.videos.push(video);
+        this.wrappers.push(wrapper);
         this.readyStates.push(false);
+        wrapper.classList.add('video-wrapper');
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'contain';
+        video.style.maxWidth = 'none';
+        
 
         video.addEventListener('loadstart', () => this.resetReadyStates());
         video.addEventListener('canplaythrough', () => {
