@@ -78,9 +78,19 @@ export class ThreeVideoComparison extends ComparisonSlider {
         // Get the third video
         const video3 = container.getElementsByTagName('video')[2];
         this.addVideo(video3);
-        // this.addCaption(video3);
-        // this.captions[2].style.bottom = null;
-        // this.captions[2].style.top = '10px';
+        this.addCaption(video3, this.wrappers[0]);
+        this.captions[2].style.bottom = null;
+        this.captions[2].style.top = '5px';
+        this.captions[2].style.right = '5px';
+        this.captions[2].style.zIndex = '5';
+        this.captions[2].style.fontSize = '10px';
+        this.captions[2].style.padding = '2px 4px';
+        this.captions[2].style.borderRadius = '2px';
+        this.captions[2].style.minHeight = 'fit-content';
+        this.captions[2].style.lineHeight = '1.4';
+        this.captions[2].style.wordBreak = 'break-word';
+        this.captions[2].style.maxWidth = '80%';
+
 
         // Add the third video to the second wrapper
         this.wrappers[0].appendChild(video3);

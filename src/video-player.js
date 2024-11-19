@@ -18,15 +18,7 @@ export class BaseVideoPlayer {
         });
     }
 
-    addVideoWithWrapper(video, wrapper) {
-        this.addVideo(video);
-        this.wrappers.push(wrapper);
-        wrapper.classList.add('video-wrapper');
-        video.style.width = '100%';
-        video.style.height = '100%';
-        video.style.objectFit = 'contain';
-        video.style.maxWidth = 'none';
-
+    addCaption(video, wrapper) {
         // Add caption if vc-caption attribute exists
         const caption = video.getAttribute('vc-caption');
         if (caption) {
@@ -61,6 +53,18 @@ export class BaseVideoPlayer {
                 attributeFilter: ['vc-caption']
             });
         }
+    }
+
+    addVideoWithWrapper(video, wrapper) {
+        this.addVideo(video);
+        this.wrappers.push(wrapper);
+        wrapper.classList.add('video-wrapper');
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'contain';
+        video.style.maxWidth = 'none';
+        this.addCaption(video, wrapper);
+        
     }
 
     resetReadyStates() {
