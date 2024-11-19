@@ -1,6 +1,6 @@
 {
     "name": "video-compare",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "A simple library for video comparison",
     "main": "dist/video-compare.js",
     "unpkg": "dist/video-compare.min.js",
