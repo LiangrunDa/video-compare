@@ -1,8 +1,9 @@
-import { SLIDER_CONTAINER_CLASS, WIPER_CONTAINER_CLASS, SIDE_BY_SIDE_CONTAINER_CLASS, THREE_VIDEO_COMPARISON_CONTAINER_CLASS } from './consts';
+import { SLIDER_CONTAINER_CLASS, WIPER_CONTAINER_CLASS, SIDE_BY_SIDE_CONTAINER_CLASS, THREE_VIDEO_COMPARISON_CONTAINER_CLASS, FOUR_GRID_CONTAINER_CLASS } from './consts';
 import './styles.css';
 import { ComparisonWiper } from './wiper';
 import { ComparisonSlider, ThreeVideoComparison } from './slider';
 import { SideBySide } from './side-by-side';
+import { FourGrid } from './four-grid';
 
 function initVideoCompare() {
     const initialize = () => {
@@ -44,6 +45,16 @@ function initVideoCompare() {
             const container = threeVideoComparisonContainers[i];
             if (container) {
                 new ThreeVideoComparison(container);
+            }
+        }
+
+        const fourGridContainers = document.getElementsByClassName(
+            FOUR_GRID_CONTAINER_CLASS,
+        );
+        for (let i = 0; i < fourGridContainers.length; i++) {
+            const container = fourGridContainers[i];
+            if (container) {
+                new FourGrid(container);
             }
         }
     };
