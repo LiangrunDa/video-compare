@@ -111,6 +111,7 @@
 
 .vc-side-by-side-container {
     display: flex;
+    position: relative;
     justify-content: center;
     gap: 0px;
 }
